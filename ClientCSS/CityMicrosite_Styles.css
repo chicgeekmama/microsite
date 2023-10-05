@@ -1,0 +1,474 @@
+/* Do not put any @imports in this CSS file. They will not be loaded properly by the 
+	preview pane in Titan Admin Theme Create dialog. Put them in the Layout CSS instead. 
+*/
+
+/* ==========================================================================================
+	There are 4 major sections to this CSS file. 
+
+	1. Block/Freeform Classes
+	   This sets up the class names that can be added in the Titan Workstation. They are 
+	   positioned at the top so Titan will show them near the top.
+
+	2. Styles of Containers 
+	   This is the styling of the "layout containers" that make up the structure of a page. 
+	   They are limited to container elements specified in the ASCX files, and not the 
+	   content produced by a control, XSL, or Block.
+
+	3. Content in Containers 
+	   This is the styling of content elements produced by controls, XSL, and/or blocks. 
+	   This provides a modular way of styling content separately from the containers that 
+	   constrain the layout of the page.
+
+	4. Block Content  
+	   This is the styling specific to base blocks intended to override the crux.css code.
+========================================================================================== */
+
+/* CSS Custom Properties
+	We aren't using these per the spec yet since browsers haven't fully implemented.
+	However, to ease development, we are doing replacements as a way to have simple
+	global property definitions that can be pushed through a design.
+	- Avoid defining properties outside of the :root pseudo class 
+	- Avoid defining complex properties. 
+	- Avoid using the var function with fallback properties.
+*/
+:root {
+	--breakpoint-phone: 600px;
+	--breakpoint-tablet: 768px;
+	--breakpoint-desktop: 1200px;
+	
+	--fontfamily-primary: Roboto, sans-serif;
+	--fontfamily-secondary: 'FontAwesome';
+	--fontfamily-third: Raleway, sans-serif;
+
+	--color-brand-primary: #00577c;
+	--color-brand-primary-hover:#44732B;
+	--color-brand-primary-dark: #004664;
+	--color-brand-secondary: #44732B;
+	--color-brand-secondary-hover: #569537; 
+	
+	--color-text-medium: rgba(126,126,115,1);
+	--color-text-dark:rgba(51,51,51,1);
+
+	--color-white: rgba(255,255,255,1);
+	--color-white-shadow:rgba(255,255,255,0.7);
+	--color-light: #eaeaea;
+	--color-medium: rgba(225,229,218,1);
+	--color-dark: rgba(85,85,85,1);
+	--color-black: rgba(0,0,0,1);
+	--color-black-shadow: rgba(0,0,0,0.2);
+}
+
+/* === SECTION 1 ============================================================================ BLOCK/FREEFORM CLASSES */
+.StripeDefault {}
+.StripeLight {background:#eaeaea; color:rgba(51,51,51,1);}
+.StripeMedium {background:rgba(225,229,218,1); color:rgba(51,51,51,1);}
+.StripeDark {background:#00577c; color:rgba(255,255,255,1);}
+.StripeDark *{color:rgba(255,255,255,1);}
+
+.CardBackground  {}
+.CardTransparent {}
+.PhotoBlock.CenterZone.TitanBlock,
+h1 {font-size:3.2rem; margin-bottom:1.8rem; line-height:1.3; font-weight:400;color:#00577c;font-family:Raleway, sans-serif;}
+h2 {font-size:2.6rem; margin-bottom:1.5rem; line-height:1.3; font-weight:400;color:#00577c;font-family:Raleway, sans-serif;}
+h3 {font-size:2.2rem; margin-bottom:1.2rem; line-height:1.3; font-weight:400;color:#00577c;font-family:Raleway, sans-serif;}
+h4 {font-size:1.8rem; margin-bottom:1.0rem; line-height:1.3; font-weight:400;color:#00577c;font-family:Raleway, sans-serif;}
+h5 {font-size:1.7rem; margin-bottom:0.8rem; line-height:1.3;color:#00577c;font-family:Raleway, sans-serif;}
+h6 {font-size:1.6rem; margin-bottom:0.6rem; line-height:1.3;color:#00577c;font-family:Raleway, sans-serif;}
+
+/* === SECTION 2 ============================================================================ STYLES OF CONTAINERS */
+/* GLOBAL */
+.titanDisplay {font-size:62.5%;}
+body {-webkit-text-size-adjust:none;}
+
+.titanBody {color:rgba(51,51,51,1); font-family:Roboto, sans-serif; font-size:1.7rem; line-height:1.7; font-weight:400;}
+.mainBody {color:rgba(51,51,51,1); font-family:Roboto, sans-serif; font-size:1rem; line-height:1.4; font-weight:400;}
+
+	/* Feature Overlays. note: TitanBlock is so TitanCMS pop up editor does not get the opacity and block user access */
+	.TitanBlock.FeatureImage:before{display:block;content:"";position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;}
+	div[class*="FeatureOverlayBlue"]:before{background:#00577c;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue10:before{opacity:.10;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue20:before{opacity:.20;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue30:before{opacity:.30;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue40:before{opacity:.40;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue50:before{opacity:.50;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue60:before{opacity:.60;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue70:before{opacity:.70;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue80:before{opacity:.80;}
+	.TitanBlock.FeatureImage.FeatureOverlayBlue90:before{opacity:.90;}
+
+	.TitanBlock .FeatureImage:before{display:block;content:"";position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;}
+	div[class*="FeatureOverlayBlue"] .FeatureImage:before{background:#00577c;}
+	.TitanBlock.FeatureOverlayBlue10 .FeatureImage:before{opacity:.10;}
+	.TitanBlock.FeatureOverlayBlue20 .FeatureImage:before{opacity:.20;}
+	.TitanBlock.FeatureOverlayBlue30 .FeatureImage:before{opacity:.30;}
+	.TitanBlock.FeatureOverlayBlue40 .FeatureImage:before{opacity:.40;}
+	.TitanBlock.FeatureOverlayBlue50 .FeatureImage:before{opacity:.50;}
+	.TitanBlock.FeatureOverlayBlue60 .FeatureImage:before{opacity:.60;}
+	.TitanBlock.FeatureOverlayBlue70 .FeatureImage:before{opacity:.70;}
+	.TitanBlock.FeatureOverlayBlue80 .FeatureImage:before{opacity:.80;}
+	.TitanBlock.FeatureOverlayBlue90 .FeatureImage:before{opacity:.90;}
+
+	/* Feature Overlay - make sure opacity doesn't overlow .FeatureImage */
+	.FeatureImage{position:relative;}
+
+
+/* === SKIP NAV */
+.titanBody a.skipNav:focus{border-radius:1px;outline:0;font-weight:600;font-size:1.4rem;background:#44732B;color:rgba(255,255,255,1);}
+
+/* == HEADER */
+#headerArea {box-shadow: 0 0 5px #999;background:rgba(255,255,255,1);}
+#headerArea.sticky {}
+
+/* ==== UTILITY */
+#utilityArea {background:#00577c;}
+#google_translate_element a, #google_translate_element em {
+    color: #fff;
+}
+
+/* ==== SEARCH BAR */
+.searchArea {background:#00577c;}
+@media (min-width:1200px){ 
+	.searchArea {background: rgba(0, 0, 0, 0.2);}
+}
+
+/* ==== LOGO */
+
+/* ==== TOP NAV */
+
+#navArea {background:transparent; box-shadow:none;}
+#navArea .searchArea {border-radius:3px;}
+
+#navOpener:checked ~ #navArea {background:#44732B; box-shadow: 0 0 5px rgba(51,51,51,1);}
+
+/* == CONTENT */
+#contentArea {background:rgba(255,255,255,1);}
+
+/* ==== TOP ZONE */
+#topZone {}
+
+/* ==== PAGE TOOLS */
+#pageTools {background:rgba(255,255,255,1);}
+#pageTools .siteBounds{border-bottom:1px solid rgba(225,229,218,1);overflow: hidden;}
+
+/* ==== PAGE TOOLS #centerZone{background:url(images/Port/MilwaukeeBadge.png) no-repeat right -160px;background-width:500px;}*/
+
+
+/* ==== TITLE BAR */
+
+/* ==== SIDE NAV */
+
+/* ==== CENTER ZONE */
+@media (min-width:1200px){ 
+div.side {border:1px solid rgba(0,0,0,0.2);}
+}
+
+/* == FOOTER */
+#footerArea {background:#004664;color:rgba(255,255,255,1);}
+.bottomContent {background:#00577c;color:rgba(255,255,255,1);}
+
+/* == SCROLL TOP */
+#scrollTop {border:2px solid rgba(255,255,255,1); background:#44732B; border-radius:50%;}
+#scrollTop:hover {background:#00577c;}
+
+
+/* === SECTION 3 ============================================================================ CONTENT IN CONTAINERS */
+/* GLOBAL */
+.titanBody a,
+.mainBody a {color:#44732B; text-decoration:none;}
+.titanBody a:hover,
+.titanBody a:focus,
+.titanBody a:active,
+.mainBody a:hover,
+.mainBody a:focus,
+.mainBody a:active {color:#00577c; text-decoration:underline;}
+
+.titanBody input,
+.titanBody textarea,
+.titanBody select {font-family:Roboto, sans-serif; font-size:1.6rem; line-height:1.4; border-radius:0;}
+.mainBody input,
+.mainBody textarea,
+.mainBody select {font-family:Roboto, sans-serif; font-size:1rem; line-height:1.2; border-radius:0;}
+
+em.fa{color:#44732B;}
+
+/* == HEADER */
+
+/* ==== UTILITY */
+
+.titanBody nav.utility a {font-size:1.3rem;color:rgba(255,255,255,1);}
+
+/* ==== SEARCH BAR */
+.searchArea input {background:transparent; border:0; outline:0;}
+.searchArea input[type="text"] {color:#569537; font-size:1.3rem;}
+
+.searchBar:before {cursor:pointer; color:rgba(225,229,218,1); font-family:'FontAwesome'; content:"\f002"; font-size:2rem;}
+.searchBar input.search {cursor:pointer; color:#eaeaea; text-indent:9000px;font-size:0;}
+.searchBar ::-webkit-input-placeholder {color:#eaeaea;}
+.searchBar ::-moz-placeholder {color:#eaeaea; opacity:1;}
+.searchBar :-ms-input-placeholder{color:#eaeaea;}
+.searchBar :-moz-placeholder{color:#eaeaea;}
+.searchBar input[placeholder]{color:#eaeaea; opacity:1;}
+
+/* ==== LOGO */
+
+/* ==== TOP NAV - caution: checked state could be on at desktop widths. style :checked even at desktop */
+
+#navButton {text-transform:uppercase; text-align:center;}	
+#navButton span {font-size:1.2rem; line-height:1rem;}
+#navButton span.fa {font-size:2.5rem; line-height:1; cursor:pointer;}
+#navButton span.fa:before {font-family:'FontAwesome'; content:"\f0c9"; }
+#navButton:hover * {color:#00577c;}
+
+#navArea > label {outline:0;}
+#navOpener:checked ~ #navArea > label {color:rgba(255,255,255,1);}
+#navOpener:checked ~ #navArea > label > #navButton span.fa:before {font-family:'FontAwesome'; content:"\f00d"; }
+#navOpener:checked ~ #navArea #navButton:hover * {color:rgba(126,126,115,1);}
+
+@media (min-width:1200px){ /* top nav */
+	#navArea.stripe {background:#eaeaea; border-bottom:1px solid #00577c;}
+}
+
+
+#navArea nav a {color:rgba(255,255,255,1); font-size:1.5rem;}
+#navArea nav a.current,
+#navArea nav a:hover,
+#navArea nav a:focus,
+#navArea nav a:active {color:rgba(255,255,255,1); background:#00577c;}
+
+#navArea nav > ul > li {border-bottom:1px solid rgba(255,255,255,1);}
+#navArea nav > ul > li > a {text-transform:uppercase;}
+
+@media (min-width:1200px){ /* top nav */
+	#navArea nav > ul > li {border-bottom:none;}
+	#navArea nav a {color:#00577c; font-size:1.6rem;font-family:Raleway, sans-serif;font-weight:500;}
+	#navArea nav a.current,
+	#navArea nav.top .menu > li ul li a:hover,
+	#navArea nav.top .menu > li ul li a:focus,
+	#navArea nav.top .menu > li ul li a:active {background:transparent; color:#44732B;}
+	/* first level */
+	#navArea nav.top .menu > li {background:transparent;}
+	#navArea nav.top .menu > li:hover > a,
+	#navArea nav.top .menu > li:focus > a,
+	#navArea nav.top .menu > li:active > a {background:inherit;color:inherit;text-decoration:none;}
+	#navArea nav.top .menu > li a span.arrow {border:5px solid transparent; border-top:5px solid #44732B;}
+	#navArea nav.top .menu > li:hover span.arrow,
+	#navArea nav.top .menu > li:focus span.arrow,
+	#navArea nav.top .menu > li:active span.arrow {border-top:5px solid rgba(126,126,115,1);}
+	/* second level */
+	#navArea nav.top .menu > li > ul::before{border:15px solid transparent; border-bottom:15px solid rgba(255,255,255,1); content: ""; left: 30px; position: absolute; top: -31px;}
+	.sticky #navArea nav.top .menu > li > ul::before {border-width: 7px;top: -14px;}
+	#navArea nav.top .menu > li > ul {background:rgba(255,255,255,1); }
+}
+
+/* == CONTENT */
+
+/* ==== TOP ZONE */
+
+/* ==== PAGE TOOLS */
+nav.tools .shareMenu span.arrow {border:10px solid transparent; border-bottom:10px solid rgba(225,229,218,1);}
+nav.tools .shareIcons {background:rgba(225,229,218,1);}
+
+.breadcrumb, .tools{font-size:14px;padding-top:5px;}
+
+
+/* ==== TITLE BAR */
+
+/* ==== SIDE NAV */
+div.side nav ul li.current a:before {font-family:'FontAwesome'; content:"\f0da";}
+div.side nav a.current {color:#569537;}
+
+/* ==== LEFT ZONE */
+	
+#centerZone .EventsListing h3 {
+    border-bottom: 1px solid #ccc;
+}
+#leftZone .DataFilter2 {
+    background: #f7f7f7;
+}
+
+/* ==== CENTER ZONE */
+
+/* == FOOTER */
+#footerArea{background:url("images/cityMicro/Skyline3-Port.png") no-repeat center top;padding-top:185px;}
+#copyRightContainer{background-color:#004664;}
+#footerArea .copyright,
+nav.bottom ul {font-size:1.3rem;font-weight:700;}
+#footerArea .poweredBy{font-size:1.2rem;color:rgba(255,255,255,1);}
+#footerArea a,
+#footerArea a:hover,
+#footerArea a:active,
+#footerArea a:focus,
+nav.bottom a, 
+nav.bottom a:hover, 
+nav.bottom a:active, 
+nav.bottom a:focus {color:rgba(255,255,255,1);}
+
+/* == SCROLL TOP */
+#scrollTop span.fa {color:rgba(255,255,255,1);font-size:4rem;line-height:4.5rem;text-align:center;}
+
+/* ==== SOCIAL MEDIA */
+	ul.SocialMedia{margin:25px 0 25px 0;padding:0;text-align:center;}
+	ul.SocialMedia li{list-style:none;display:inline-block;}
+	ul.SocialMedia li a{background: rgba(0, 0, 0, 0.15);padding:8px 10px;width:50px;height:50px;margin:0 5px;display:inline-block;border-radius:50%;display:flex;align-items:center;justify-content: center;}
+	ul.SocialMedia li a em{margin-left:5px;color:rgba(255,255,255,1);}
+	ul.SocialMedia li a:hover,
+	ul.SocialMedia li a:active,
+	ul.SocialMedia li a:focus{background:#44732B;text-decoration:none;border:2px solid rgba(255,255,255,1);}
+
+/* ==== PARRALAX */
+.ParralaxBlock {
+    border-top: 2px solid #00577c;
+}
+.titanBody .StripeParralax p {
+    font-size: 2rem;
+    line-height: 30px;
+    font-style: italic;
+}
+.titanBody .StripeParralax p{font-size:2rem;line-height:30px;font-style:italic;}
+/* ==== BOX STYLE */
+	.BoxStyle{padding:20px 20px 15px 20px;border-top:2px solid #00577c;background:#eaeaea;box-shadow: 0 0 5px #999;}
+	.BoxStyle ul{margin:0px;padding:0px;}
+	.BoxStyle ul li{list-style:none;font-size:17px;line-height:30px;background:none;margin-bottom:0px;padding-left:0px;}
+
+/* ==== BOX STYLE 2 */
+	.BoxStyle2{padding:20px 20px 15px 20px ;border-top:2px solid #44732B;background:#00577c;color:rgba(255,255,255,1);box-shadow: 0 0 5px #999;}
+	.BoxStyle2 *{color:rgba(255,255,255,1);}
+	.BoxStyle2 ul{margin:0px;padding:0px;}
+	.BoxStyle2 ul li{list-style:none;font-size:17px;line-height:30px;background:none;margin-bottom:0px;padding-left:0px;}	
+
+/* ==== BOX STYLE 3 */
+	.BoxStyle3{padding:20px 20px 15px 20px ;border-top:2px solid #00577c;background:#44732B;color:rgba(255,255,255,1);box-shadow: 0 0 5px #999;}
+	.BoxStyle3 *{color:rgba(255,255,255,1);}
+	.BoxStyle3 ul{margin:0px;padding:0px;}
+	.BoxStyle3 ul li{list-style:none;font-size:17px;line-height:30px;background:none;margin-bottom:0px;padding-left:0px;}	
+
+/* ==== PRODUCT CAROUSEL - SLICK SLIDER  ARROWS */
+	.slick-track{}
+	.slick-slide{width:33.33vw;}
+	.slick-arrow{position:absolute;z-index:5;top:50%;margin-top:-22px;transition: all .3s ease 0s;display:flex;align-items:center;justify-content:center;height:44px;width:44px;text-align:center;border-radius:50%;padding:0;cursor: pointer;color:#00577c ;border: none;outline: none;box-shadow: 0 0 5px #888;background:rgba(255,255,255,1);}
+	.slick-arrow:hover{transform: scale(1.2);}
+	.slick-arrow span{top:3px;}
+	.slick-prev{left:0%;}
+	.slick-next{right:0%;}
+	.slick-disabled{visibility:hidden;}
+
+	@media (max-width:1200px){
+		.slick-slide{width:100vw;}
+	}
+
+/* ==== SLICK SLIDER  DOTS */
+	.slick-slider{margin:10px 0px 0px 0px;padding:0px;}
+	.slick-dots{margin:10px 0 0 0;padding:0px;text-align:center;}
+	.slick-dots li{display:inline-block;list-style:none;background:none !important;padding-left:0px !important;}
+	.slick-dots li button{display:inline-block;background:#00577c;color:rgba(255,255,255,1);border-radius:50%;border:none;width:22px;height:22px;margin:5px;font-size:0px;cursor:pointer;}
+	.slick-dots li.slick-active button{background:#44732B;}
+	.slick-dots li button:hover,
+	.slick-dots li button:focus,
+	.slick-dots li button:active{background:#44732B;width:28px;height:28px;}
+
+/* ==== CARD CAROUSEL */
+	.CardCarouselContainer .slick-slide{margin:10px;}
+	.CardCarousel{margin:0px;}
+
+
+
+
+/* === SECTION 4 ============================================================================ BLOCK CONTENT */
+
+.titanBody .FeatureImage {}
+.titanBody .FeatureText *,
+.titanBody .FeatureText *:hover{color:rgba(255,255,255,1);}
+.titanBody .FeatureText .Button a,.mainBody .FeatureText  .Button a {border:2px solid rgba(255,255,255,1); background:transparent; border-radius:1px; color:rgba(255,255,255,1);font-size: 1.4rem;font-weight: 600;text-transform: uppercase;}
+.titanBody .FeatureText .Button a:hover, .titanBody .FeatureText .Button a:focus, .titanBody .FeatureText .Button a:active, .mainBody .FeatureText .Button a:hover, .mainBody .FeatureText .Button a:focus, .mainBody .FeatureText .Button a:active {border:2px solid rgba(255,255,255,1); background:rgba(255,255,255,1); color:#00577c;}
+.titanBody .FeatureText h2{font-size:3.2rem;}
+
+.Circles img {clip-path: circle(39% at 50% 50%);} /* will only work on browsers that support clip-path - that is, not IE */
+
+.StripeDefault .CardBackground .item,
+.StripeLight   .CardBackground .item {border:1px solid rgba(225,229,218,1);}
+.StripeDark    .CardBackground .item {background:rgba(255,255,255,1);}
+.StripeDark    .CardBackground .item h4 a {color:#44732B;}
+.StripeDark    .CardBackground .item h4 a:hover,
+.StripeDark    .CardBackground .item h4 a:active,
+.StripeDark    .CardBackground .item h4 a:focus {color:rgba(0,0,0,1);}
+.StripeDark    .CardBackground .teaser {color:rgba(126,126,115,1);}
+
+.Aggregation.TabFilter .AggregationFilter2 fieldset .inputs > div,
+.CardTransparent .item .linkText a,
+.CardBackground  .item .linkText a,
+.titanBody .Button a,
+.mainBody .Button a,
+.CenterZone input[type="submit"], 
+.CenterZone input[type="button"], 
+.Commenting input[type="button"] {border:1px solid transparent; background:#00577c; border-radius:1px; color:rgba(255,255,255,1); text-align:center; transition:all 0.1s ease; text-decoration:none; cursor:pointer; font-weight:bold; font-size:1.4rem;}
+
+/* Filter Block Class: TabFilter */
+.Aggregation.TabFilter .AggregationFilter2 fieldset .inputs > div.selected,
+.CardTransparent .item:hover  .linkText a:hover,
+.CardTransparent .item:focus  .linkText a:hover,
+.CardTransparent .item:active .linkText a:hover,
+.CardBackground  .item:hover  .linkText a:hover,
+.CardBackground  .item:focus  .linkText a:hover,
+.CardBackground  .item:active .linkText a:hover,
+.titanBody .Button a:hover, 
+.titanBody .Button a:focus, 
+.titanBody .Button a:active,
+.mainBody  .Button a:hover, 
+.mainBody  .Button a:focus, 
+.mainBody  .Button a:active,
+.CenterZone input[type="submit"]:hover, 
+.CenterZone input[type="submit"]:focus, 
+.CenterZone input[type="submit"]:active, 
+.CenterZone input[type="button"]:hover, 
+.CenterZone input[type="button"]:focus, 
+.CenterZone input[type="button"]:active, 
+.Commenting input[type="button"]:hover, 
+.Commenting input[type="button"]:focus, 
+.Commenting input[type="button"]:active {background:#44732B; color:rgba(255,255,255,1); border: 1px solid transparent; text-decoration:none;}
+
+.TitanBlock input[type="button"],
+.TitanBlock input[type="submit"] {border:1px solid transparent; background:#00577c; border-radius:1px; color:rgba(255,255,255,1); text-align:center; transition:all 0.1s ease; text-decoration:none;}
+.TitanBlock input[type="button"]:hover,
+.TitanBlock input[type="button"]:active,
+.TitanBlock input[type="button"]:focus,
+.TitanBlock input[type="submit"]:hover,
+.TitanBlock input[type="submit"]:active,
+.TitanBlock input[type="submit"]:focus {background:#44732B; color:rgba(255,255,255,1); border: 1px solid transparent; text-decoration:none;}
+
+.DataFilter2 td,.DatePicker td,
+.DatePicker table{background:rgb(230,230,230);}
+.DataFilter2 td,.DatePicker td{border:1px solid rgb(255,255,255);}
+.DataFilter2 td.otherMonth,.DatePicker td.otherMonth{background:rgb(200,200,200);}
+.DataFilter2 td.selectedDate,.DataFilter2 td.selectedDate.hasEvent,.DatePicker td.selectedDate,.DatePicker td.selectedDate.hasEvent{background:rgba(90,90,90,.3);border:1px solid rgb(255,255,255);}
+.DataFilter2 td.hasEvent,.DatePicker td.hasEvent{background:rgb(90,90,90);}
+
+.TitanBlock input.filterTrigger + div h3 label {background:#00577c; color:rgba(255,255,255,1);font-size:1.7rem; line-height:1.7rem;}
+.TitanBlock input.filterTrigger + div h3 label:hover {background:#44732B; color:rgba(255,255,255,1);}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div {background:rgba(225,229,218,1); box-shadow:none;}
+.TitanBlock input.filterTrigger + div .filterClose div span {display:none;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div .filterClose div:before {font-family:'FontAwesome'; font-size:3rem; content:"\f00d"; cursor:pointer; }
+
+@media (min-width:1200px) {
+	.TitanBlock input.filterTrigger + div, 
+	div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div {background:rgba(255,255,255,1); border:1px solid rgba(85,85,85,1); box-shadow:none;}
+
+	div.side .TitanBlock input.filterTrigger + div,
+	div.side .TitanBlock input.filterTrigger:checked + div {border:none;}
+
+	.TitanBlock input.filterTrigger + div h3 label,
+	.TitanBlock input.filterTrigger + div h3 label:hover {background:transparent; color:inherit; font:inherit;}
+}
+
+div.Accordion div.accordionHeading span.arrow span:first-child {border-left-color:#00577c;}
+div.Accordion div.accordionHeading.open span.arrow span:first-child {border-left-color:transparent;border-top-color:#00577c;}
+div.Accordion div.accordionHeading span.arrow span + span {display:none;}
+div.Accordion .min, div.Accordion .max {font-size: 1.3rem;}
+
+/* ==== Segmented Search */
+.smartSearchResults, .SmartRL {background: #eaeaea;}
+
+/* ==== Photo Block */
+.PhotoBlock .filmstrip .leftArrow, .PhotoBlock .filmstrip .rightArrow {background:#00577c; border-radius:50%; cursor:pointer; height:4rem; width:4rem; padding:10px 0 0 10px;}
+.PhotoBlock .filmstrip .rightArrow {padding:10px 0 0 14px;}
+.PhotoBlock .filmstrip .rightArrow::after,.PhotoBlock .filmstrip .leftArrow::after {cursor:pointer; color:rgba(225,229,218,1); font-family:'FontAwesome'; content:"\f053"; font-size:2rem; line-height:2rem;}
+.PhotoBlock .filmstrip .rightArrow::after {content:"\f054";}

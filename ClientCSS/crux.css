@@ -1,0 +1,981 @@
+/* The base styling for any Titan display.
+	This file will be overwritten with every Titan upgrade. Do not change this file as your changes will be lost.
+	Instead, make your style changes to a theme-level CSS (layout or style).
+
+	CSS Custom Properties
+	We aren't using these per the spec yet since browsers haven't fully implemented.
+	However, to ease development, we are doing replacements as a way to have simple
+	global property definitions that can be pushed through a design.
+	- Avoid defining properties outside of the :root pseudo class 
+	- Avoid defining complex properties. 
+	- Avoid using the var function with fallback properties.
+*/
+:root {
+	--breakpoint-tablet: 768px;
+	--breakpoint-desktop: 1200px;
+}
+
+/* === Responsive Media === */
+.titanBody img, .titanBody embed, .titanBody object, .titanBody video, .titanBody audio {height:auto; max-width:100%;}
+
+/* === Responsive Form inputs === */
+.titanBody input, .titanBody select, .titanBody textarea {border:1px solid rgba(200,200,200,1);}
+
+
+/* === Responsive Layout - Block Floats === */
+.Float25, 
+.Float33, 
+.Float50, 
+.Float66, 
+.Float75 {padding:0; width:100%;}
+
+.TitanBlock {clear:both; margin-bottom:15px;}
+.TitanBlock:first-child:last-child,
+p:first-child:last-child,
+h1:first-child:last-child {margin-bottom:0;}
+
+div.side .TitanBlock {margin-left:15px;}
+
+@media (min-width:768px) {
+	.Float25, .Float33, .Float50, .Float66, .Float75 {float:left; padding:0; width:48.45%; clear:left; margin-left:0;}
+
+	.Float25.New50, .Float33.New50, .Float50.New50, .Float66.New50, .Float75.New50 {clear:none; margin-left:3%;}
+
+	div.side .Float25, 
+	div.side .Float33, 
+	div.side .Float50, 
+	div.side .Float66, 
+	div.side .Float75 {float:none;}
+}
+
+@media (min-width:1200px){
+	.Float25 {clear:none; width:22.72%; margin-left:3%;}
+	.Float33 {clear:none; width:31.30%; margin-left:3%;}
+	.Float50 {clear:none; width:48.45%; margin-left:3%;}
+	.Float66 {clear:none; width:65.60%; margin-left:3%;}
+	.Float75 {clear:none; width:74.20%; margin-left:3%;}
+
+	div.side .Float25, 
+	div.side .Float33, 
+	div.side .Float50, 
+	div.side .Float66, 
+	div.side .Float75 {width:100%;}
+
+	.Float25.New100,
+	.Float33.New100,
+	.Float50.New100,
+	.Float66.New100,
+	.Float75.New100 {clear:left; margin-left:0;}
+
+	.Float25.New100.NoClear, .Float33.New100.NoClear, .Float50.New100.NoClear, .Float66.New100.NoClear, .Float75.New100.NoClear {clear:none; float:left; margin-left:3%;}
+
+	.titanDisplay .Float25 input[type="text"],.titanDisplay .Float33 input[type="text"],.titanDisplay .Float50 input[type="text"],.titanDisplay .Float66 input[type="text"],.titanDisplay .Float75 input[type="text"],
+	.titanDisplay .Float25 input[type="password"],.titanDisplay .Float33 input[type="password"],.titanDisplay .Float50 input[type="password"],.titanDisplay .Float66 input[type="password"],.titanDisplay .Float75 input[type="password"],
+	.titanDisplay .Float25 input[type="email"],.titanDisplay .Float33 input[type="email"],.titanDisplay .Float50 input[type="email"],.titanDisplay .Float66 input[type="email"],.titanDisplay .Float75 input[type="email"],
+	.titanDisplay .Float25 input[type="file"],.titanDisplay .Float33 input[type="file"],.titanDisplay .Float50 input[type="file"],.titanDisplay .Float66 input[type="file"],.titanDisplay .Float75 input[type="file"],
+	.titanDisplay .Float25 select,.titanDisplay .Float33 select,.titanDisplay .Float50 select,.titanDisplay .Float66 select,.titanDisplay .Float75 select,
+	.titanDisplay .Float25 textarea,.titanDisplay .Float33 textarea,.titanDisplay .Float50 textarea,.titanDisplay .Float66 textarea,.titanDisplay .Float75 textarea {width:100%;}
+}
+
+/* ==== Common Elements - override if necesary in Block-specific behavior ==== */
+
+/* TABS - Typically Data Detail & FAQ block, but could be anywhere */
+div.tabbedContent {clear:both; width:100%; margin-bottom:20px;}
+div.tabbedContent ul.tabs {list-style:none; margin:0; padding:0; overflow:hidden; z-index:90;}
+div.tabbedContent ul.tabs li {position:relative; cursor:pointer; padding:7px; height:auto; margin:5px 0; border:1px solid #ccc; border-radius:0; background:#eee;}
+div.tabbedContent ul.tabs li:hover {background:#fff;}
+div.tabbedContent ul.tabs li.selected {font-weight:bold; background:#fff;}
+
+div.tabbedContent ul.buttons {list-style:none; margin:0; padding:0; overflow:hidden;}
+div.tabbedContent ul.buttons li {cursor:pointer; padding:7px; overflow:hidden; border:1px solid #ccc; border-radius:2px; margin:5px 0; background:#eee;}
+div.tabbedContent ul.buttons li:hover {background:#fff;}
+div.tabbedContent ul.buttons li.selected {font-weight:bold; background:#fff; border-color:#999;}
+
+div.tabbedContent .tabsContent {margin-bottom:20px; padding:10px; background:#fff; border:1px solid #ccc;}
+div.tabbedContent .tabsContent div {display:none; width:100%;}
+div.tabbedContent .tabsContent div.selected,
+div.tabbedContent .tabsContent div.selected div {display:block;}
+div.tabbedContent .tabsContent span {margin-bottom:10px; display:block; clear:both;}
+div.tabbedContent .tabsContent a {}
+div.tabbedContent .tabsContent a img {border:0;}
+div.tabbedContent .tabsContent table {border-collapse:collapse; margin:0 20px 0 0; width:370px; border:1px solid #ccc;}
+div.tabbedContent .tabsContent table ul {margin:0; padding:0 0 0 15px;}
+div.tabbedContent .tabsContent th {padding:5px 10px; border:1px solid #ccc; color:#555; background:#eee; white-space:nowrap;}
+div.tabbedContent .tabsContent td {padding:5px 10px; border:1px solid #ccc; color:#555;}
+div.tabbedContent .tabsContent table caption {padding:5px 10px; border:1px solid #ccc; color:#555; border-bottom:0; background:#eee; font-weight:bold;}
+div.tabbedContent .tabsContent .odd th {background:#ddd;}
+div.tabbedContent .tabsContent .odd {background:#eee;}
+
+@media (min-width:1200px) {
+	div.tabbedContent {clear:none; float:left; position:relative;}
+	div.tabbedContent ul.tabs {margin:0 0 0 5px; position:absolute; top:0; left:0;}
+	div.tabbedContent ul.tabs li {float:left; padding:5px 8px; height:3.5rem; margin:0 3px; border-bottom:0; border-radius:2px 2px 0 0; background:transparent;}
+	div.tabbedContent ul.tabs li:not(.selected):hover {background:transparent;}
+	div.tabbedContent ul.buttons li {float:left; clear:left; width:auto;}
+	div.tabbedContent .tabsContent {position:relative; top:3.4rem; overflow:hidden; border-radius:2px;}
+
+	/* For Wkst */
+	.mainBody div.tabbedContent ul.tabs li {height:17px; width:20%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+}
+
+/* Accordion */
+
+div.Accordion span.max,
+div.Accordion span.min {float:right; margin: 20px 20px 10px 20px; cursor:pointer;}
+div.Accordion.open span.max,
+div.Accordion span.min {display:none;}
+div.Accordion span.max,
+div.Accordion.open span.min {display:block;}
+div.Accordion div.accordionArea {clear:both;}
+
+div.Accordion div.accordionHeading {cursor:pointer;overflow:hidden;font-weight:bold;border-top:solid 1px #ccc;padding:10px 0px;}
+div.Accordion div.accordionHeading span {float:left;width:85%;}
+div.Accordion div.accordionHeading span.arrow {float:left;display:inline-block;height:13px;margin:5px 10px 0;position:relative;width:13px;}
+div.Accordion div.accordionHeading span.arrow span {display:inline-block;height:0;width:0;}
+div.Accordion div.accordionHeading span.arrow span:first-child {border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid  #333;}
+div.Accordion div.accordionHeading span.arrow span + span {left:-3px;position:absolute;top:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid white;}
+div.Accordion div.accordionHeading.open span.arrow {margin-top:4px;}
+div.Accordion div.accordionHeading.open span.arrow span:first-child {border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid  #333;}
+div.Accordion div.accordionHeading.open span.arrow span + span {left:0;position:absolute;top:-3px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid white;}
+
+div.Accordion div.accordionContent {display:none; padding:0 10px 10px 34px;}
+div.Accordion div.accordionContent.open {display:block;}
+
+/* === FlowPlayer Video - Used by Freeform === */
+.titanFlowHolder {border:1px solid #ddd; background:#eee url('images/videoPlay.png') no-repeat 50% 50%;}
+
+/* Dialog Fuzzy Cover - Used by Data Editor */
+#titanDialogCover {position:absolute; top:0; left:0; height:50px; width:50px; background-color:#000; opacity:0.5; filter:alpha(opacity=50);}
+
+/* RECAPTCHA */
+.recaptcha {clear:both; margin-bottom:20px;}
+.recaptchaMessage {display:none;}
+
+/* Filter areas */
+.TitanBlock input.filterTrigger {display:none;}
+
+.TitanBlock input.filterTrigger + div {z-index:1001;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div {position:fixed; right:0; top:0; padding-bottom:40px; height:100%; min-width:300px; max-width:400px; width:85%; padding:15px; z-index:2000; background:#ccc; box-shadow:none; overflow:auto;}
+
+@media (min-width:1200px) {
+	.TitanBlock input.filterTrigger + div h3 {background:transparent; border:0;}
+}
+
+.TitanBlock input.filterTrigger + div h3 label,
+.TitanBlock input.filterTrigger + div h3 label:hover {display:inline-block; padding:6px 20px; border:1px solid transparent; background:#777; border-radius:1px; color:#fff; text-align:center; transition:all 0.1s ease; text-decoration:none; cursor:pointer; outline:0;}
+.mainBody .TitanBlock input.filterTrigger + div h3 label {transition:none;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div h3 label,
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div h3 label:hover {display:block; padding:0; transition:none; background:transparent; border:0; color:inherit; font:inherit; text-align:left;}
+
+.TitanBlock input.filterTrigger + div h3 label span.arrow {display:none;}
+
+.TitanBlock input.filterTrigger + div .filterClose {display:none; outline:0;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div .filterClose {display:block; position:fixed; width:100%; height:100%; right:16px; top:0; z-index:2001;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div .filterClose div {float:right; margin:0 15px; cursor:pointer;}
+
+.TitanBlock input.filterTrigger + div h3 ~ fieldset,
+.TitanBlock input.filterTrigger + div h3 ~ div fieldset {display:none; margin-bottom:15px;}
+.TitanBlock input.filterTrigger:checked + div h3 ~ fieldset,
+.TitanBlock input.filterTrigger:checked + div h3 ~ div fieldset {display:block; position:relative; z-index:2002; padding-right:10%;}
+
+.TitanBlock input.filterTrigger + div h3 ~ input[type="button"] {display:none;}
+div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div h3 ~ input[type="button"] {display:block; position:relative; z-index:2002;}
+
+@media (min-width:1200px) {
+	.TitanBlock input.filterTrigger + div,
+	div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div {float:left; margin:0 0 40px 0; padding:15px; width:23%; min-width:0; max-width:none; height:auto; position:static; background:#fff; border:1px solid #999; box-shadow:none;}
+	
+	div.side .TitanBlock input.filterTrigger + div,
+	div.side .TitanBlock input.filterTrigger:checked + div {width:auto; border:none; padding:0;}
+
+	.TitanBlock input.filterTrigger + div h3 label,
+	.TitanBlock input.filterTrigger + div h3 label:hover {display:block; padding:0; background:transparent; border:0; color:inherit; text-align:left; cursor:default;}
+
+	div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div .filterClose {display:none;}
+
+	.TitanBlock input.filterTrigger + div h3 ~ fieldset,
+	.TitanBlock input.filterTrigger + div h3 ~ div fieldset,
+	.TitanBlock input.filterTrigger:checked + div h3 ~ fieldset,
+	.TitanBlock input.filterTrigger:checked + div h3 ~ div fieldset {display:block; width:auto; padding-right:initial;}
+
+	.TitanBlock input.filterTrigger + div h3 ~ input[type="button"],
+	div:not(.mainBody) > .TitanBlock input.filterTrigger:checked + div h3 ~ input[type="button"] {display:block;}
+
+	.DataFilter2 + .DataListing,
+	.Aggregation > div:first-child + .loading + .AggregationResults,
+	.SegmentedSearchFilter2 + .SearchResults{clear:none;float:right;width:73%;}
+}
+
+.TitanBlock fieldset {border:0; margin:0; padding:0; background:transparent;}
+.TitanBlock fieldset div.head {overflow:hidden; padding:5px 5px 2px 0; border-bottom:1px solid rgba(204,204,204,1);}
+.TitanBlock fieldset div.head span {background:rgba(0, 0, 0, 0) url("images/bgFilterArrows.gif") no-repeat scroll 1px 10px; cursor:pointer; float:left; height:20px; padding:0; width:20px;}
+.TitanBlock fieldset.min div.head span{background-position:1px -14px;}
+.TitanBlock fieldset div.head h4 {float:left; text-transform:capitalize;}
+.TitanBlock fieldset div.head .reset {clear:none; float:right; margin:0; padding:0; text-decoration:none;}
+.TitanBlock fieldset table {width:100%;}
+.TitanBlock .inputs,
+.TitanBlock .input {overflow:hidden; padding:5px 0 0 0;}
+.TitanBlock .inputs input {float:left; margin-left:0;}
+.TitanBlock .inputs input[type="checkbox"] {margin-top:5px; margin-right:8px;}
+.TitanBlock .input input[type="text"],.TitanBlock .input input[type="password"],.TitanBlock .input input[type="email"], .TitanBlock .input select,
+.TitanBlock .inputs input[type="text"],.TitanBlock .inputs input[type="password"],.TitanBlock .inputs input[type="email"], .TitanBlock .inputs select {width:100%;}
+.TitanBlock .inputs label {float:left; margin-left:0; width:82%;}
+.TitanBlock .inputs div {display:block; overflow:hidden; padding:4px 0;}
+
+/* Suggest Box - Used by Tag Suggest & Proximity Location Suggest */
+
+.TitanBlock .suggestBox div.search input.searchBox {border: 1px solid rgb(200, 200, 200);height: 3rem;line-height: 1.5;margin: 4px 0 0;padding: 4px 9px;position: relative;white-space: nowrap;width:100%;}
+.TitanBlock .suggestBox.min div.search {display:none;}
+.TitanBlock .suggestBox div.search span.totals {float:right; color:#888; font-style:italic;}
+.TitanBlock .suggestBox div.suggest {z-index:10; position:absolute; margin:0 4px 4px 0; padding:1px; width:inherit; border:1px solid gray; box-shadow:2px 2px 1px #ccc; background-color:#fff;}
+.TitanBlock .suggestBox div.suggest ul {list-style:none; padding:0; margin:0;}
+.TitanBlock .suggestBox div.suggest ul li {cursor:pointer; padding:5px; overflow:hidden;}
+.TitanBlock .suggestBox div.suggest ul li span.uses {float:right; color:#888;}
+.TitanBlock .suggestBox div.suggest ul li.noResults,
+.TitanBlock .suggestBox div.suggest ul li.noResults:hover {cursor:default; background-color:transparent; color:#888; font-style:italic;}
+.TitanBlock .suggestBox div.suggest ul li:hover,
+.TitanBlock .suggestBox div.suggest ul li.hover {background-color:#eee;}
+
+/* "accountFilter2" - Tag selector for Registration Block, Event Upload (obsolete), and File Upload block */
+.TitanBlock .accountFilter2 {float:none; margin:0 0 15px 0; width:100%; padding-top:10px;}
+.TitanBlock .accountFilter2 h3 {font-size:1.7rem; line-height:1.7rem; font-weight:700;}
+.TitanBlock .accountFilter2 label {font-weight:400;}
+.TitanBlock .accountFilter2 fieldset {margin-bottom:15px;}
+.TitanBlock .accountFilter2 fieldset div.head {overflow:hidden; padding:5px 5px 2px 5px; border-bottom:1px solid rgba(204,204,204,1);}
+.TitanBlock .accountFilter2 fieldset div.head h4 {float:left;}
+.TitanBlock .accountFilter2 fieldset div.head span, 
+.TitanBlock .accountFilter2 fieldset div.head span:before {float:left; height:10px; margin:0 5px 0 0; width:10px; cursor:pointer;}
+.TitanBlock .accountFilter2 .inputs {overflow:hidden; padding:5px 0 0 0;}
+.TitanBlock .accountFilter2 .inputs input, 
+.TitanBlock .accountFilter2 .inputs label {float:left; margin-left:0;}
+.TitanBlock .accountFilter2 .inputs label {width:82%;}
+.TitanBlock .accountFilter2 .inputs span {display:block; overflow:hidden; padding:4px 0;}
+.TitanBlock .accountFilter2 input[type="checkbox"] {margin-top:5px; margin-right:8px;}
+.TitanBlock .accountFilter2 fieldset table {width:100%;}
+
+/* "listingTools" - The sort selector for Filter, Data List */
+.TitanBlock .listingTools {overflow:hidden; padding:10px 0;}
+.TitanBlock .listingTools * {font-size:1.3rem; color:rgba(0,0,0,.6);}
+.TitanBlock .listingTools li {clear:none; float:none; margin:0; white-space:nowrap;}
+.TitanBlock .listingTools li a {display:inline-block; padding:3px 9px;}
+.TitanBlock .listingTools li a:hover {color:rgba(0,0,0,1);}
+.TitanBlock .listingTools li.selected a {color:rgba(0,0,0,1);}
+.TitanBlock .listingTools label {float:left; padding:3px 6px 3px 0; font-weight:700;}
+.TitanBlock .listingTools div.sorter {overflow:hidden;}
+.TitanBlock .listingTools div.sorter ul {float:left; margin:0; padding:0; list-style:none;}
+
+/* "seeMore/seeLess/hideZero" */
+.TitanBlock .seeMore .seeMore, 
+.TitanBlock .seeLess .more, 
+.TitanBlock .seeMore .less {display:block;}
+.TitanBlock .min .inputs .selected {display:block;}
+.TitanBlock .seeLess .seeMore,
+.TitanBlock .seeLess .less,
+.TitanBlock .seeMore .more,
+.TitanBlock .hideZero .zero,
+.TitanBlock .min .inputs div,
+.TitanBlock .seeLess.min .more,
+.TitanBlock .seeMore.min .less {display:none;}
+
+/* DatePicker */
+.TitanBlock .DatePicker {width:200px; border:solid 1px rgba(51,51,51,1); box-shadow:3px 3px 3px rgba(119,119,119,1); z-index:2;}
+.TitanBlock .DatePicker .arrow,
+.TitanBlock .DatePicker .dblarrow,
+.TitanBlock .DatePicker .caption th {font-size:1.9rem; padding-bottom:3px; cursor:pointer; color:rgba(51,51,51,1);}
+.TitanBlock .DatePicker .caption th#calTitle {cursor:default; font-size:1.6rem;}
+.TitanBlock .DatePicker .arrow:hover,
+.TitanBlock .DatePicker .arrow:focus,
+.TitanBlock .DatePicker .arrow:active,
+.TitanBlock .DatePicker .dblarrow:hover,
+.TitanBlock .DatePicker .dblarrow:focus,
+.TitanBlock .DatePicker .dblarrow:active {color:rgba(119,119,119,1);}
+.TitanBlock .DatePicker table {width:100%; margin:0 auto;}
+.TitanBlock .DatePicker table th, 
+.TitanBlock .DatePicker table td {height:32px; width:14.25%; color:rgba(153,153,153,1); vertical-align:middle; text-align:center; cursor:pointer; border:0;}
+.TitanBlock .DatePicker table th {cursor:default;}
+.TitanBlock .DatePicker table td.hasEvent,
+.TitanBlock .DatePicker table td.selected,
+.TitanBlock .DatePicker table td.selectedDate,
+.TitanBlock .DatePicker table td.selected.selectedDate,
+.TitanBlock .DatePicker table td.selected.selectedDate.hasEvent {color:rgba(0,0,0,1); font-weight:700;}
+.TitanBlock .DatePicker table .otherMonth {background:#ccc; cursor:default;}
+
+
+
+/* ==== Blocks ==== */
+
+.TitanBlock:after {content:"."; display:block; visibility:hidden; clear:both; height:0; font-size:0; line-height:0;}
+
+.titanBody .TitanBlock p {margin-bottom:0;}
+.titanBody .TitanBlock p.teaser {margin:5px 0;}
+
+/* List Blocks - TOC, Filter, DataList, WhatNew,  */
+
+.TitanBlock .OneCol > div,
+.TitanBlock .tocList > div,
+.TitanBlock .TwoCol > div,
+.TitanBlock .ColTwo > div,
+.TitanBlock .ColThree > div,
+.TitanBlock .ColFour > div,
+.TitanBlock .ColFive > div {margin-bottom:20px; overflow:hidden;}
+.TitanBlock .item:last-child {margin-bottom:0;}
+
+@media (min-width:768px) {
+	.TitanBlock .OneCol,
+	.TitanBlock .tocList,
+	.TitanBlock .TwoCol,
+	.TitanBlock .ColTwo,
+	.TitanBlock .ColThree,
+	.TitanBlock .ColFour,
+	.TitanBlock .ColFive {clear:both;}
+	.TitanBlock .TwoCol > div:first-child,
+	.TitanBlock .ColTwo > div:first-child,
+	.TitanBlock .ColThree > div:first-child,
+	.TitanBlock .ColFour > div:first-child,
+	.TitanBlock .ColFive > div:first-child {margin-left:0;}
+	.TitanBlock .TwoCol > div:last-child,
+	.TitanBlock .ColTwo > div:last-child,
+	.TitanBlock .ColThree > div:last-child,
+	.TitanBlock .ColFour > div:last-child,
+	.TitanBlock .ColFive > div:last-child {margin-right:0;}
+}
+
+.TitanBlock .averageRating span {padding-right:5px;}
+.TitanBlock .averageRating .icon {display:none;}
+.TitanBlock .item > span,
+.TitanBlock .hitCount,
+.TitanBlock .date {display:block;}
+
+.TitanBlock a.teaserImage {display:block; margin:0 auto 5px auto;}
+
+.TitanBlock .classifications ul {margin:0; padding:0;}
+.TitanBlock .classifications ul li {display:inline-block; padding:0 5px;}
+
+.TitanBlock ul.paginationFooter, 
+.TitanBlock ul.pagination {clear:both; margin:10px 0; padding:0;}
+.TitanBlock ul.pagination span {display:inline; padding:0 4px;}
+.TitanBlock ul.paginationFooter li, 
+.TitanBlock ul.pagination li {display:inline;}
+.TitanBlock ul.paginationFooter li.nextButton {margin-left:9px;}
+
+
+/* ==== Actively Used Block Types ==== */
+
+/* Application Bock */
+.PortletBlock {}
+
+/* Commenting & Rating */
+.Commenting {}
+.Commenting img {border:0; outline:0;}
+.Commenting h3 {font-size:2.0rem; line-height:2.4rem;}
+.Commenting td {width:10%;}
+
+.Commenting .icon {display:none;}
+.Commenting .messageOn, 
+.Commenting .error {clear:both; display:none;}
+.Commenting .buttons {clear:both; display:block;}
+
+.Commenting .commentForm {padding-top:20px;}
+.Commenting .commentForm .label {padding-top:6px; width:130px;}
+.Commenting .commentForm .comment .label {float:left; padding-right:4px; padding-top:0;}
+.Commenting .commentForm table {border-collapse:collapse; margin:0; padding:0;}
+.Commenting .commentForm table tr, 
+.Commenting .commentForm table td {margin:0; padding:0; text-align:center;}
+.Commenting .commentForm div {padding-top:15px;}
+.Commenting .commentForm div.recaptcha,
+.Commenting .commentForm div.recaptcha > div {padding-top:0;}
+.Commenting .commentForm .comment textarea {clear:both; float:left;}
+.Commenting .commentForm .SFMessage {padding:0; display:list-item; list-style:disc; margin-left:30px;}
+
+.Commenting .summary {margin-bottom:10px; overflow:hidden; padding-top:20px; padding-bottom:10px;}
+.Commenting .summary > div {clear:both; overflow:hidden;}
+.Commenting .summary .label {width:150px;}
+
+.Commenting .comments {padding-top:20px; margin-bottom:10px;}
+
+.Commenting .nameMessage, 
+.Commenting .emailMessage, 
+.Commenting .titleMessage, 
+.Commenting .ratingMessage, 
+.Commenting .commentMessage, 
+.Commenting .recaptchaMessage, 
+.Commenting .ErrorMessage, 
+.ErrorMessage br {display:none;}
+
+/* general */
+.Commenting .label, 
+.Commenting .value, 
+.Commenting .value span {float:left; margin-right:5px;}
+
+.Commenting .label {width:100px;}
+
+.Commenting .OneCol > div {margin:10px 0 0 0; overflow:hidden; padding:12px 0 0 0;}
+.Commenting .OneCol > div:first-child {margin:0; padding:0;}
+.Commenting .OneCol div div {clear:both; margin-bottom:2px; overflow:hidden;}
+.Commenting .OneCol div div.comment {margin-top:13px;}
+.Commenting .OneCol div div div {clear:none; margin:0;}
+.Commenting .OneCol .comment .label, 
+.Commenting .OneCol .comment .value {clear:both; display:block;}
+
+/* comments pop up - IDs are from CommentForm.ascx */
+.commentsPop, 
+.commentFormPop {background:rgba(255,255,255,1);}
+.commentsPop #pageTopArea, 
+.commentFormPop #pageTopArea {height:auto; position:static;}
+.commentsPop #logoControlContainer, 
+.commentFormPop #logoControlContainer {float:none; margin-bottom:0; width:100%;}
+.commentsPop #logoControlContainer a, 
+.commentFormPop #logoControlContainer a {display:inline-block; margin-top:5px;}
+.commentsPop #contentArea, 
+.commentFormPop #contentArea {padding-top:10px;}
+.commentsPop .Commenting .siteBounds div:first-child, 
+.commentFormPop .Commenting .siteBounds div.commentForm {border:0;}
+
+/* Data Detail */
+.DataDetail {}
+.DataDetail .label {font-weight:bold; margin-right:5px;}
+.DataDetail .date .date,
+.DataDetail .date .time {display:inline-block; margin-right:5px;}
+.DataDetail .linkText {margin-bottom:20px;}
+
+/* Data Editor */
+.DataEditor {}
+.DataEditor fieldset {border:0; background:0;}
+
+
+.DataEditor div.StatusWarning {background:#FEEFCE; border:1px solid #FF9900; margin:10px 0; padding:5px;}
+
+.DataEditor div.dataField div.fieldMessage.messageOn {color:red;}
+.DataEditor div.dataField div.fieldMessage span.icon {margin:0; padding:0; background:none; cursor:default;}
+.DataEditor div.dataField input.date {width:100px; display:inline;}
+.DataEditor div.dataField input.time {width:80px; margin-left:20px;}
+.DataEditor div.dataField.date span.icon,
+.DataEditor div.dataField.datetime span.icon,
+.DataEditor div.dataField.datetimerecur span.icon {background:url('images/thbCalendar.png') no-repeat left top; cursor:pointer; display:inline; margin-left:5px; padding:3px 7px;}
+.DataEditor div.dataField.datetimerecur .patternLabel {padding-top:5px;}
+.DataEditor div.dataField.latlong span {display:block;}
+.DataEditor div.dataField.latlong label {width:78px;}
+.DataEditor div.dataField.latlong input {width:80px;}
+.DataEditor div.dataField.textarea textarea {width:300px; height:80px;}
+
+.DataEditor .linkEdit {margin-top:4px; display:inline-block;}
+.DataEditor span.linkEdit {cursor:pointer; text-decoration:underline;}
+
+.DataEditor div.previewDiv {margin:5px 0; padding:2px; height:150px; overflow-y:auto; width:300px; font-size:12px; border:1px solid gray;}
+html.TTPopupContent .DataEditor div.previewDiv {width:98%;}
+
+
+.DataEditor table td {vertical-align:top;}
+.DataEditor table td input[type='text'] {padding:4px 2px; font-size:12px;}
+.content-inner .DataEditor table td input[type='text'] {padding:2px;}
+
+.DataEditor label {font-weight:bold; display:inline-block; margin-top:4px; font-size:12px;}
+
+.DataEditor .suggestBox div.search,
+.DataEditor .suggestBox div.suggest {margin:0;}
+.DataEditor .suggestBox .totals {margin-right:7px;}
+.DataEditor .suggestBox .inputs span {display:flex;}
+
+.DataEditor div.dataField input[type='button'].simple_button {margin-left:5px;}
+
+.DataEditor div.dataField.linkpicker,
+.DataEditor div.dataField.multifilepicker {float:left; width:99%;}
+.DataEditor div.dataField.tags fieldset,
+.DataEditor div.dataField.tags .inputs {margin:0; padding:0;}
+.DataEditor div.dataField.tags .inputs span {display:flex;}
+.DataEditor div.dataField.linkpicker fieldset,
+.DataEditor div.dataField.multifilepicker fieldset {border:1px solid #dcdcdc; padding:0 0 5px 0; margin:5px 0 5px 2px;}
+.DataEditor div.dataField.linkpicker fieldset .h4legend,
+.DataEditor div.dataField.multifilepicker fieldset .h4legend {margin:0; padding:6px; line-height:1; font-size:12px; font-weight:bold; border-bottom:1px solid #dcdcdc;}
+.DataEditor div.dataField.linkpicker fieldset .h4legend span,
+.DataEditor div.dataField.multifilepicker fieldset .h4legend span {padding:0;}
+
+.DataEditor div.dataField div.buttons input.sortUp {display:inline-block; margin:0 2px; border-top:0; border-left:6px solid transparent; border-right:6px solid transparent; float:none; width:0; height:0; border-bottom:10px solid black;}
+.DataEditor div.dataField div.buttons input.sortUp.disabled {border-bottom-color:#e1e1e1;}
+.DataEditor div.dataField div.buttons input.sortDown {display:inline-block; margin:0 2px; border-bottom:0; border-left:6px solid transparent; border-right:6px solid transparent; float:none; width:0; height:0; border-top:10px solid black;}
+.DataEditor div.dataField div.buttons input.sortDown.disabled {border-top-color:#e1e1e1;}
+
+.DataEditor div.dataField span.name,
+.DataEditor div.dataField span.link {display:inline-block; width:40%; padding-top:6px; margin-right:15px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+
+.DataEditor div.dataField div.optionList {width:100%; margin:0; overflow-x:hidden; overflow-y:auto;}
+.DataEditor div.dataField div.optionList ul {height:150px; width:100%; margin:0; padding:0;}
+.DataEditor div.dataField div.optionList ul li {float:none; clear:both; margin:0; padding:0 0 0 6px; display:table; cursor:pointer; width:100%; border-bottom:dotted 1px lightgray;}
+.DataEditor div.dataField div.optionList ul li.select {background-color:lightgray;}
+.DataEditor div.dataField div.optionList ul li.marker {display:none; cursor:default;}
+
+/* === RecurrenceEditor within DataEditor === */
+.DataEditor .RecurrenceEditor {border:solid 1px #777; box-shadow:3px 3px 3px #777; z-index:1; background:#f1f1e3; padding:0; margin:0;}
+.DataEditor .RecurrenceEditor span.label {font-weight:bold; display:block; padding-bottom:4px;}
+.DataEditor .RecurrenceEditor.error {border:solid 1px red; background-color:#FFEBF1;}
+.DataEditor .RecurrenceEditor .errorText {display:none;}
+.DataEditor .RecurrenceEditor.error .errorText {display:block;}
+.DataEditor .RecurrenceEditor .errorText,
+.DataEditor .RecurrenceEditor .recurrenceInput,
+.DataEditor .RecurrenceEditor .recurrenceEnd,
+.DataEditor .RecurrenceEditor .recurrenceExcludes,
+.DataEditor .RecurrenceEditor .recurrenceButtons {float:left; clear:both; width:580px; padding:4px; margin:5px; border:solid 1px #999; background:#F0F0F0;}
+.DataEditor .RecurrenceEditor .recurrenceButtons {background:none; border:none; text-align:right;}
+.DataEditor .RecurrenceEditor ul {list-style-type:none; margin:0; padding:0; float:left; width:100%; color:#333;}
+.DataEditor .RecurrenceEditor ul li {float:left; margin-right:25px; color:#333;}
+.DataEditor .RecurrenceEditor .recurrenceInput ul.verticalradio li {clear:left; width:95%; margin-bottom:5px; padding:0;}
+.DataEditor .RecurrenceEditor .recurrenceInput ul.verticalradio select {padding:1px; margin:0 3px;}
+.DataEditor .RecurrenceEditor .recurrenceInput ul.verticalradio label {font-weight:normal;}
+.DataEditor .RecurrenceEditor .frequencyInput {float:left; width:120px; height:100px; padding-top:5px; border-right:solid 1px #999;}
+.DataEditor .RecurrenceEditor .frequency {float:left; width:445px; padding-left:10px;}
+.DataEditor .RecurrenceEditor .frequency .daily,
+.DataEditor .RecurrenceEditor .frequency .weekly,
+.DataEditor .RecurrenceEditor .frequency .monthly,
+.DataEditor .RecurrenceEditor .frequency .yearly {display:none;}
+.DataEditor .RecurrenceEditor .frequency.daily .daily,
+.DataEditor .RecurrenceEditor .frequency.weekly .weekly,
+.DataEditor .RecurrenceEditor .frequency.monthly .monthly,
+.DataEditor .RecurrenceEditor .frequency.yearly .yearly {display:inline-block; width:100%; margin-top:5px;}
+.DataEditor .RecurrenceEditor .frequency span {width:100%; margin-bottom:10px; display:block;}
+.DataEditor .RecurrenceEditor .frequency .weekly span.dow {float:left; display:inline-block; width:110px; margin-bottom:5px;}
+.DataEditor .RecurrenceEditor .frequency .weekly span.dow label {font-weight:normal; display:inline;}
+.DataEditor .RecurrenceEditor input[type="text"] {margin:0 3px; padding:1px 2px;}
+.DataEditor .RecurrenceEditor .frequency input.shortFixed,
+.DataEditor .RecurrenceEditor .recurrenceEnd input.shortFixed {width:46px; margin:0 3px;}
+.DataEditor .RecurrenceEditor .recurrenceEnd input.short {width:100px;}
+.DataEditor .RecurrenceEditor .recurrenceEnd label {font-weight:normal; display:inline;}
+.DataEditor .RecurrenceEditor .recurrenceExcludes select.radioOptions {width:250px; float:left;}
+.DataEditor .RecurrenceEditor .recurrenceExcludes div.radioOptionBuilder {padding:2px 10px; display:inline-block;}
+.DataEditor .RecurrenceEditor .recurrenceExcludes div.radioOptionBuilder span {float:left; width:50px; padding:4px 0 0 10px;}
+.DataEditor .RecurrenceEditor .recurrenceExcludes div.radioOptionBuilder input {padding-left:5px; margin-bottom:5px;}
+.DataEditor .RecurrenceEditor .calendarIcon {background:url('images/thbCalendar.png') no-repeat left top; cursor:pointer; display:inline-block; margin-left:5px; padding:3px 7px;}
+
+
+/* Data List */
+.DataList {}
+.DataList img {border:0; outline:0;}
+.DataList .DataListing {}
+
+.DataList .DataListing div.ColOne,
+.DataList .DataListing div.ColTwo,
+.DataList .DataListing div.ColThree,
+.DataList .DataListing div.ColFour,
+.DataList .DataListing div.ColFive {overflow:hidden;}
+
+.DataList .DataListing div.ColOne div.item,
+.DataList .DataListing div.ColTwo,
+.DataList .DataListing div.ColThree,
+.DataList .DataListing div.ColFour,
+.DataList .DataListing div.ColFive {border-bottom:1px solid #ddd;}
+
+.DataList .DataListing div.ColTwo div.item {float:left; width:47%;}
+.DataList .DataListing div.ColThree div.item {float:left; width:31%;}
+.DataList .DataListing div.ColFour div.item {float:left; width:22%;}
+.DataList .DataListing div.ColFive div.item {float:left; width:17%;}
+.DataList div.items {padding-top:10px; overflow:hidden;}
+.DataList div.item {overflow:hidden; margin-right:15px; padding:10px 0;}
+.DataList div.ColOne div.item {margin-right:0;}
+.DataList div.item .label {font-weight:bold; margin-right:5px;}
+.DataList div.item span {display:block;}
+.DataList div.item span span {display:inline;}
+.DataList .DataListing h3 {}
+.DataList .DataListing div.ColOne a.teaserImage,
+.DataList .DataListing div.ColTwo a.teaserImage {padding-right:3%;} /* do not use margin because of set widths floated in other breakpoints */
+.DataList .DataListing div.ColThree a.teaserImage,
+.DataList .DataListing div.ColFour a.teaserImage,
+.DataList .DataListing div.ColFive a.teaserImage {float:none;}
+
+/* DataList filtering */
+.DataList .DataFilter2 div.input input[type="text"],.DataList .DataFilter2 div.input input[type="password"],.DataList .DataFilter2 div.input input[type="email"] {width:100%;}
+.DataList .DataFilter2 div.inputs div span {cursor:pointer;}
+.DataList .DataFilter2 .calendar span.icon {background:url('images/thbCalendar.png') no-repeat left top; cursor:pointer; display:inline; margin-left:5px; padding:1px 7px;}
+.DataList .DataFilter2 .calendar span.from,
+.DataList .DataFilter2 .calendar span.to,
+.DataList .DataFilter2 .calendar label span.instruction {display:block; margin-bottom:5px; font-weight:normal;}
+.DataList .DataFilter2 .calendar span.from label,
+.DataList .DataFilter2 .calendar span.to label {display:inline; float:left; margin-right:5px; font-weight:bold;}
+.DataList .DataFilter2 .monthLinks {display:block; width:100%; text-align:center; line-height:1.5em;}
+.DataList .DataFilter2 .monthLinks span.left {padding:0 7px 0 0; float:left;}
+.DataList .DataFilter2 .monthLinks span.right {padding:0 0 0 7px; float:right;}
+.DataList .DataFilter2 .monthLinks .monthTitle {font-size:1.2em; line-height:1.5em;}
+.DataList .DataFilter2 .monthLinks .dblarrow,
+.DataList .DataFilter2 .monthLinks .arrow {font-size:1.5em; cursor:pointer; color:#333;}
+.DataList .DataFilter2 .monthLinks .dblarrow:hover,
+.DataList .DataFilter2 .monthLinks .arrow:hover {color:#777;}
+.DataList .DataFilter2 .monthDropdown select {display:block; width:100%; font-size:1.2em;}
+
+/* FAQ */
+.FAQ {}
+.FAQ a img {border:0; outline:0;}
+.FAQ dl {margin:0; padding:0;}
+.FAQ dl dt {clear:both; float:none; overflow:hidden; padding-top:10px; padding-bottom:5px;font-weight:bold;}
+.FAQ .titan_faq_q dl dt {border:0;padding-top:0;}
+.FAQ dl dd {margin:0; overflow:hidden;}
+
+.FAQ .ToTop {clear:both; display:inline-block; margin-bottom:12px;}
+
+.FAQ .Accordion .min,
+.FAQ .Accordion.open .max,
+.FAQ .Accordion .accordionContent {display:none;}
+.FAQ .Accordion.open .min,
+.FAQ .Accordion .accordionContent.open {display:block;}
+.FAQ .Accordion .min,
+.FAQ .Accordion .max {padding:5px;}
+.FAQ .Accordion .accordionHeading > span {float:left;}
+.FAQ .Accordion .accordionHeading span.arrow + span {width:85%;}
+.FAQ .Accordion .accordionContent {margin:10px 20px;}
+
+/* File Upload */
+.DisplaySideUpload {}
+.DisplaySideUpload .uploadFields div label {display:block;}
+.DisplaySideUpload .uploadFields div {padding-top:10px;}
+.DisplaySideUpload .SFMessage {padding:0;}
+.DisplaySideUpload .upload {clear:both; display:block;}
+.DisplaySideUpload .error {background:rgba(247,247,247,1); border:1px solid rgba(204,204,204,1);}
+
+/* Filter */
+.Aggregation {}
+.Aggregation img {border:0; outline:0;}
+.Aggregation .Aggregation > div:first-child input.btnSubmit {clear:both; display:block;}
+
+@media (min-width:1200px) {
+	.TitanBlock input.filterTrigger + div ~ .AggregationResults {width:67%; float:left;}
+}
+
+.Aggregation ul.alphaList {margin:10px 0; padding:0; list-style:none;}
+.Aggregation ul.alphaList li {display:inline-block; padding-right:9px;}
+.Aggregation .alpha {clear:both; padding-top:10px;}
+.Aggregation .tocList {margin-left:25px;}
+.Aggregation .tocList div {margin-bottom:15px; overflow:hidden;}
+
+/* Forms Editor */
+.FormEditor {}
+.FormEditor a img {border:0; outline:0;}
+.FormEditor .SFMessage {display:list-item; list-style:disc; margin-left:30px;}
+.FormEditor .buttons {clear:both; display:block;}
+
+/* Freeform (and Raw HTML) */
+.Freeform {}
+.Freeform a img {border:0; outline:0;}
+
+/* Login */
+.LogIn {}
+.LogIn label {display:block;}
+.LogIn div div {padding-top:10px;}
+.LogIn .remember label {display:inline-block; margin-left:5px;}
+.LogIn .buttons {overflow:hidden; clear:both; display:block;}
+.LogIn .forgot, 
+.LogIn .account {padding-top:4px;}
+.LogIn .error {clear:both; display:none;}
+.LogIn .SFMessage {padding:0;}
+
+/* Page Share */
+.SharePage {background:0;border:0;padding:0;}
+
+/* Photo */
+.PhotoBlock {}
+.PhotoBlock img {border:0; outline:0;}
+
+.PhotoBlock .filmstrip {}
+.PhotoBlock .filmstrip div h3 {color:#555; font-size:1.3rem; font-weight:bold; padding-left:0.5rem;}
+.PhotoBlock .filmstrip img {cursor:pointer;float:left;margin:5px;}
+.PhotoBlock .filmstrip .webImages {float:left;}
+.PhotoBlock .filmstrip .leftArrow,
+.PhotoBlock .filmstrip .rightArrow {color:#fff;font-size:0;line-height:50;cursor:pointer;float:left;height:20px;margin-top:70px;width:20px;}
+.PhotoBlock .filmstrip .rightArrow + div {display:none;}
+.PhotoBlock .filmstrip .leftArrow {background:url('images/btnPrevNextArrows.gif') no-repeat left top;}
+.PhotoBlock .filmstrip .rightArrow {background:url('images/btnPrevNextArrows.gif') no-repeat right top;}
+.PhotoBlock .filmstrip .leftArrow:hover {background-position:left bottom;}
+.PhotoBlock .filmstrip .rightArrow:hover {background-position:right bottom;}
+.PhotoBlock .filmstrip .thumbnails {clear:both; float:left; margin:2rem 0; width:100%;}
+
+/* Registration Block */
+.UserAccount {}
+.UserAccount label {display:block;}
+.UserAccount .TOUAgree {overflow:hidden;}
+.UserAccount .TOUAgree input {float:left;}
+.UserAccount .TOUAgree label {float:left;}
+.UserAccount .response + .response {padding-bottom:20px;}
+.UserAccount .reqYes {float:left; padding-right:3px;}
+.UserAccount .req {display:none;}
+.UserAccount .ErrorMessage {display:none;}
+.UserAccount .accountForm div {padding-top:10px;}
+.UserAccount .hintQuestions div {padding-top:10px;}
+.UserAccount .SFMessage {padding:0;}
+.UserAccount .buttons {clear:both; display:block;}
+
+
+/* Search Results */
+.SearchResults {}
+.SearchResults img {border:0; outline:0;}
+.SearchResults .titleArea h3 {font-size:3.5rem;}
+.SearchResults .paginationFooter {margin-bottom:5px;}
+
+/* Segmented Search */
+.SegmentedSearch {}
+.SegmentedSearch .message {clear:both; display:none;}
+.SegmentedSearch .loading {display:block;}
+.SegmentedSearch .loading div {display:none;}
+.SegmentedSearch .loading .message {display:block; margin-bottom:20px; overflow:hidden;}
+.SegmentedSearch .tools {overflow:hidden;}
+.SegmentedSearch .tools .label {float:left; margin-right:8px;}
+
+.SegmentedSearch .view {overflow:hidden; clear:none; float:left; padding:5px 0;}
+.SegmentedSearch .view .minIcon,
+.SegmentedSearch .view .maxIcon {float:left; height:16px; width:16px; margin-right:8px; display:inline-block; color:transparent; cursor:pointer; background:url('/ClientCSS/images/bgGridView.gif') no-repeat;}
+.SegmentedSearch .view .minIcon {background-position:left top;}
+.SegmentedSearch .min .view .minIcon {background-position:left -17px;}
+.SegmentedSearch .view .maxIcon {background-position:right -17px;}
+.SegmentedSearch .min .view .maxIcon {background-position:right top;}
+
+.SegmentedSearch .min .teaserImage, 
+.SegmentedSearch .min .date, 
+.SegmentedSearch .min .hitCount, 
+.SegmentedSearch .min .teaser, 
+.SegmentedSearch .min .linkText, 
+.SegmentedSearch .min .linkComments, 
+.SegmentedSearch .min .linkURL, 
+.SegmentedSearch .min .averageRating, 
+.SegmentedSearch .min .sort, 
+.SegmentedSearch .min .author, 
+.SegmentedSearch .min .size, 
+.SegmentedSearch .min .type, 
+.SegmentedSearch .min .phone, 
+.SegmentedSearch .min .emailAddress, 
+.SegmentedSearch .min .department, 
+.SegmentedSearch .min .EventRL .allDayEvent, 
+.SegmentedSearch .min .EventRL .startTime, 
+.SegmentedSearch .min .EventRL .endTime, 
+.SegmentedSearch .min .EventRL .endDate, 
+.SegmentedSearch .min .EventRL .location, 
+.SegmentedSearch .min .price, 
+.SegmentedSearch .min .date, 
+.SegmentedSearch .min .description, 
+.SegmentedSearch .min .shortTeaser, 
+.SegmentedSearch .min .longTeaser, 
+.SegmentedSearch .min .partNumber, 
+.SegmentedSearch .min .urlText, 
+.SegmentedSearch .min .sku, 
+.SegmentedSearch .min .otherStuff .label, 
+.SegmentedSearch .min .EventRL .startDate, 
+.SegmentedSearch .min .EventRL .sponsor, 
+.SegmentedSearch .min .EventRL .contact, 
+.SegmentedSearch .min .EventRL .email, 
+.SegmentedSearch .min .EventRL p, 
+.SegmentedSearch .min .EventRL .hitCount, 
+.SegmentedSearch .min .EventRL .attachment {display:none;}
+
+.SegmentedSearch .sort {clear:none; float:left; padding:5px 0;}
+.SegmentedSearch .sort select {float:left; margin-top:-5px; width:auto;}
+
+.SegmentedSearch .seeAllResults {clear:both; float:right;}
+
+.smartSearchTitle {margin-top:10px;}
+
+.organicSearchResults .OneCol div {overflow:hidden;}
+
+.smartSearchResults, 
+.SmartRL {margin:10px 0; padding:15px 15px 3px;}
+
+.smartSearchResults h3 {clear:both; margin:0 0 15px 0; padding:0;}
+
+.docMatch {margin:10px 0;}
+
+.titleMiddle {display:none;}
+
+.didYouMean {margin:15px 0;}
+
+.didYouMean h2 {margin:5px 0;}
+
+.SmartRL, 
+.PagesRL, 
+.FilesRL, 
+.PeopleRL, 
+.NewsRL, 
+.EventRL {clear:both; margin-bottom:25px; overflow:hidden; padding-bottom:5px;}
+
+
+.fullSegment h3 {display:none;}
+
+
+/* Site Map */
+.SiteMap {}
+.SiteMap img {border:0; outline:0;}
+.SiteMap ul {list-style:none;}
+.SiteMap ul li {margin-top:10px;}
+
+/* TOC */
+.TOCBlock {}
+.TOCBlock img {border:0; outline:0;}
+
+/* Whats New */
+.WhatsNew {}
+.WhatsNew img {border:0; outline:0;}
+
+/* ==== Obsolete Block Types ==== */
+.Calendar,
+.ContactForm,
+.EventUpload,
+.MyLinks,
+.Product {}
+
+
+/* ==== Filter Styles ==== */
+
+/* ========================================================================================== stopped */
+
+/* === hr color === */
+.titanDisplay hr, .mainBody hr, .TitanBlock hr {background-color:#ccc; border:0; color:#ccc; height:1px; clear:both;}
+
+/* === font sizes - line-height === */
+
+
+
+
+.reset {font-size:1.2rem;}
+
+.Accordion .minmax, .linkText, .hitCount, .linkComments, .linkURL a, .SearchResults .date, .seeAllResults a, .averageRating, .DataListing .startDate, .DataListing .endDate, .DataListing .location, .OneCol .classifications, .TwoCol .classifications, .ThreeCol .classifications, .FourCol .classifications, .ColOne .classifications, .ColTwo .classifications, .ColThree .classifications, .ColFour .classifications, .tocList .classifications, .Aggregation > div:first-child .seeLess .more, .Aggregation > div:first-child .seeMore .less, .SegmentedSearchFilter2 .seeLess .more, .SegmentedSearchFilter2 .seeMore .less,
+.DataFilter2 .seeLess .more, .DataFilter2 .seeMore .less {font-size:1.3rem;}
+
+.DataFilter2 h4, .Aggregation > div:first-child h4, .SegmentedSearchFilter2 h4.monthHeader {font-size:1.4rem;}
+
+.reset, .DataFilter2 .head span, .DataFilter2 .head span::before, .DataFilter2 h4, .Aggregation > div:first-child .head span, .Aggregation > div:first-child .head span::before, .Aggregation > div:first-child h4, .SegmentedSearchFilter2 .head span, .SegmentedSearchFilter2 .head span::before, .SegmentedSearchFilter2 h4, .SearchResults .date, .monthHeader, .DataListing .startDate, .DataListing .endDate, .DataListing .location, .averageRating, .hitCount, .seeAllResults a {line-height:1.3;}
+
+
+
+
+.DataFilter2 .dblarrow, .SearchResults h3 {font-size:1.9rem;}
+
+
+
+
+
+/* === colors === */
+
+.ErrorMessage, .ErrorText, .messageOn, .messageOn {color:rgba(0,0,0,.7);}
+
+.DataListing .startDate, .DataListing .endDate, .DataListing .location,
+.DataFilter2 td.selected.selectedDate, .DataFilter2 td.selected.selectedDate.hasEvent, .averageRating, .hitCount, .SearchResults .date, .seeAllResults a {color:rgba(0,0,0,1);}
+
+.DataFilter2 .arrow:hover, .DataFilter2 .dblarrow:hover, .DataFilter2 .arrow:focus, .DataFilter2 .dblarrow:focus, .DataFilter2 .arrow:active, .DataFilter2 .dblarrow:active, div.SearchResults h4.docMatch i, .SearchResults.min .view .maxIcon::before, .SearchResults .view .minIcon::before {color:rgba(119,119,119,1);}
+
+.DataFilter2 table td {color:rgba(153,153,153,1);}
+
+.DataFilter2 .dblarrow {color:rgba(51,51,51,1);}
+
+/*
+.DataFilter2 h3:hover, .DataFilter2 h3:focus, .DataFilter2 h3:active, .Aggregation > div:first-child h3:hover, .Aggregation > div:first-child h3:focus, .Aggregation > div:first-child h3:active, .SegmentedSearchFilter2 h3:hover, .SegmentedSearchFilter2 h3:focus, .SegmentedSearchFilter2 h3:active, .DataFilter2 td.hasEvent, .DataFilter2 td.selectedDate, .DataFilter2 td.selectedDate.hasEvent {color:rgba(255,255,255,1);}
+*/
+
+/* accent color */
+.DataFilter2 .head span:hover::before, .DataFilter2 .head span:focus::before, .DataFilter2 .head span:active::before, .Aggregation > div:first-child .head span:hover::before, .Aggregation > div:first-child .head span:focus::before, .Aggregation > div:first-child .head span:active::before, .SegmentedSearchFilter2 .head span:hover::before, .SegmentedSearchFilter2 .head span:focus::before, .SegmentedSearchFilter2 .head span:active::before, .reqYes, .required span, .SegmentedSearchFilter2 .selected, .SegmentedSearchFilter2 .inputs div:hover, .SearchResults .view .maxIcon::before, .SearchResults .view .maxIcon:hover::before, .SearchResults .view .minIcon:hover::before, .SearchResults.min .view .minIcon::before {color:rgba(0,0,0,.8);}
+
+/* buttons */
+.CenterZone input[type="submit"], .CenterZone input[type="button"], .Commenting input[type="button"] {color:rgba(0,0,0,1);}
+
+.CenterZone input[type="submit"]:hover, .CenterZone input[type="submit"]:focus, .CenterZone input[type="submit"]:active, .CenterZone input[type="button"]:hover, .CenterZone input[type="button"]:focus, .CenterZone input[type="button"]:active, .Commenting input[type="button"]:hover, .Commenting input[type="button"]:focus, .Commenting input[type="button"]:active {color:rgba(255,255,255,1);}
+
+/* === font weights === */
+.SearchResults .titleArea h3, .SegmentedSearchFilter2 h4, .DataFilter2 h4, .Aggregation > div:first-child h4, .SiteMap li ul li {font-weight:400;}
+
+.Commenting h3, 
+.DataFilter2 h3, 
+.Aggregation > div:first-child h3, 
+.SegmentedSearchFilter2 h3, 
+.SearchResults h3, 
+.Commenting .label, 
+.DisplaySideUpload label, 
+.LogIn label, 
+.UserAccount label, 
+.OneCol .classifications span, 
+.TwoCol .classifications span, 
+.ThreeCol .classifications span, 
+.FourCol .classifications span, 
+.ColOne .classifications span, 
+.ColTwo .classifications span, 
+.ColThree .classifications span, 
+.ColFour .classifications span, 
+.tocList .classifications span, 
+.DataFilter2 table td.selected, 
+.DataFilter2 table td.hasEvent, 
+.SiteMap ul li, 
+ul.alphaList li a,
+/* buttons */
+.CenterZone input[type="submit"], .CenterZone input[type="button"], .Commenting input[type="button"] {font-weight:700;}
+
+/* === text decoration - text-transform - word wraps - text-align  === */
+.DataFilter2 table td, .commentsPop #logoControlContainer, .commentFormPop #logoControlContainer {text-align:center;}
+
+
+/* === cursor === */
+.DataFilter2 table td, .DataFilter2 table .arrow, .DataFilter2 table .dblarrow, .Aggregation > div:first-child .head span, .Aggregation > div:first-child .head span::before, .Aggregation > div:first-child fieldset div.head .reset, .SegmentedSearchFilter2 .head span, .SegmentedSearchFilter2 .head span::before, .SegmentedSearchFilter2 fieldset div.head .reset, .DataFilter2 .head span, .DataFilter2 .head span::before, .DataFilter2 fieldset div.head .reset {cursor:pointer;}
+
+.DataFilter2 table .otherMonth {cursor:default;}
+
+/* === backgrounds and borders === */
+
+/* buttons */
+.CenterZone input[type="submit"], .CenterZone input[type="button"], .Commenting input[type="button"] {background:rgba(255,255,255,1); border:2px solid rgba(0,0,0,.8);}
+
+.CenterZone input[type="submit"]:hover, .CenterZone input[type="submit"]:focus, .CenterZone input[type="submit"]:active, .CenterZone input[type="button"]:hover, .CenterZone input[type="button"]:focus, .CenterZone input[type="button"]:active, .Commenting input[type="button"]:hover, .Commenting input[type="button"]:focus, .Commenting input[type="button"]:active {border:2px solid rgba(0,0,0,.8); background:rgba(0,0,0,.8);}
+
+/* error message */
+.titanBody .ErrorMessage {background:rgba(247,247,247,1); border:1px solid rgba(204,204,204,1);}
+
+/* === inputs === */
+
+
+/* === images === */
+
+
+/* ========================================================================================== BLOCKS */
+
+
+/* === LISTING BLOCKS - toc, filter, data === */
+/* display none */
+div.loading, div.classifications {clear:both; display:none;}
+div.loading.waiting {display:block;}
+
+/* calendar widget - DataFilter2 =  fieldset.calendar table.calendar, EventUpload = div.DatePicker table.calendar */
+
+.DataFilter2 .calendar .input {padding:5px 0 !important;}
+
+.DataFilter2 table {margin:0 auto;}
+
+.DataFilter2 table th {padding:3px 0;}
+
+.DataFilter2 table td {height:32px; width:14.25%;}
+
+/* === FORM BLOCKS === */
+
+
+
+.thankYouForm .recaptcha {clear:both;}
+
+/* inputs */
+/* Hide the clear X on textboxes in IE10+ (at least until there's an event we can attach to) */
+.IE .titanDisplay input::-ms-clear, .IE .dataField input::-ms-clear {display:none;}
+
+/* buttons */
+.titanDisplay input[type="button"], .titanDisplay input[type="submit"] {-webkit-appearance:none;}
+
+/* error messages */
+.titanBody .ErrorMessage, .titanBody .error {margin:10px 0; padding:5px;}
+
+.titanBody .accountForm .error {padding:0;}
+
+
+#bottomContainer.commentsFooter {padding-left:10%; padding-right:10%;}
+
+#bottomContainer.commentsFooter #poweredBy {display:none;}
+
+
+
+
+
+/* ==========================================================================================  PRINT */
+.titanPrint,
+.titanPrint #mainBody,
+.titanPrint #contentArea,
+.titanPrint #centerZone {border:0; background:0; margin:0; padding:0; width:100%;}
+
+.titanPrint h1, .titanPrint h2, .titanPrint h3, .titanPrint h4, .titanPrint h5, .titanPrint h6 {border:0; background:0;}
+
+@media print {h1, h2, h3, h4, h5, h6,section,.titanDisplay,.titanBody,#mainBody,#contentArea,#centerZone {background:0 !important;}
+header,footer {display:none;}
+#mainBody,#contentArea,#centerZone {margin:0; padding:0; width:100% !important;}}
